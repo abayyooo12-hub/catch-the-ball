@@ -1,4 +1,4 @@
-console.log("Script berjalan");
+
 
 const basket = document.getElementById("basket");
 const ball = document.getElementById("ball");
@@ -93,3 +93,25 @@ function loop(){
     }
 
 }
+
+// ============================
+// Kontrol Sentuh untuk HP
+// ============================
+
+const gameArea = document.getElementById("game");
+
+gameArea.addEventListener("touchmove", function(e) {
+
+    e.preventDefault();
+
+    const rect = gameArea.getBoundingClientRect();
+    const touchX = e.touches[0].clientX - rect.left;
+
+    basketX = touchX - 50;
+
+    if (basketX < 0) basketX = 0;
+    if (basketX > 400) basketX = 400;
+
+    basket.style.left = basketX + "px";
+
+}, { passive: false });
